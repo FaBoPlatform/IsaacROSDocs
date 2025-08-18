@@ -346,6 +346,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      最終確認
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1348,6 +1366,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      最終確認
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1505,6 +1541,73 @@ UUID=2c3bd0ed-bdb7-4ab4-8325-2d75b49da9de /mnt/nova_ssd/ ext4 defaults 0 2
 <h2 id="_2">オーナーを変更</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo chown ${USER}:${USER} /mnt/nova_ssd
 </code></pre></div></td></tr></table></div>
+<h2 id="_3">最終確認</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo blkid | grep nvme
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/dev/nvme0n1p1: UUID=&quot;2c3bd0ed-bdb7-4ab4-8325-2d75b49da9de&quot; BLOCK_SIZE=&quot;4096&quot; TYPE=&quot;ext4&quot; PARTLABEL=&quot;primary&quot; PARTUUID=&quot;73f67677-5af3-4d06-8821-867d97527640&quot;
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>df -h
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>Filesystem       Size  Used Avail Use% Mounted on
+/dev/mmcblk0p1    54G   38G   14G  74% /
+tmpfs             31G  172K   31G   1% /dev/shm
+tmpfs             13G   27M   13G   1% /run
+tmpfs            5.0M  4.0K  5.0M   1% /run/lock
+/dev/mmcblk0p10   63M  118K   63M   1% /boot/efi
+/dev/nvme0n1p1   1.8T   68G  1.7T   4% /mnt/nova_ssd
+tmpfs            6.2G  120K  6.2G   1% /run/user/1000
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo ls -l /mnt/nova_ssd/docker/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>total 96
+drwx--x--x   4 root root  4096 Nov 23  2024 buildkit
+drwx--x---  27 root root  4096 Aug 11 18:13 containers
+-rw-------   1 root root    36 Nov 23  2024 engine-id
+drwx------   3 root root  4096 Nov 23  2024 image
+drwxr-x---   3 root root  4096 Nov 23  2024 network
+drwx--x--- 236 root root 53248 Jan  1  1970 overlay2
+drwx------   4 root root  4096 Nov 23  2024 plugins
+drwx------   2 root root  4096 Jan  1  1970 runtimes
+drwx------   2 root root  4096 Nov 23  2024 swarm
+drwx------   2 root root  4096 Jan  1  1970 tmp
+drwx-----x   2 root root  4096 Jan  1  1970 volumes
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo du -chs /mnt/nova_ssd/docker/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>59G /mnt/nova_ssd/docker/
+59G total
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker info | grep -e &quot;Runtime&quot; -e &quot;Root&quot;
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code> Runtimes: io.containerd.runc.v2 nvidia runc
+ Default Runtime: nvidia
+ Docker Root Dir: /mnt/nova_ssd/docker
+</code></pre></div></td></tr></table></div>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://nvidia-isaac-ros.github.io/getting_started/hardware_setup/compute/jetson_storage.html">Jetson Setup</a></li>
+</ul>
 
 
 
