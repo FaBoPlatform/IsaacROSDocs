@@ -565,51 +565,6 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      事前準備
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#isaac-ros-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Isaac ROS Dockerの起動
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#isaac-ros-nvblox" class="md-nav__link">
-    <span class="md-ellipsis">
-      Isaac ROS Nvblox パッケージのインストール
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nvblox_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nvbloxの起動
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rviz2" class="md-nav__link">
-    <span class="md-ellipsis">
-      RVIz2で表示
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
       デモ
     </span>
   </a>
@@ -1342,51 +1297,6 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      事前準備
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#isaac-ros-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Isaac ROS Dockerの起動
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#isaac-ros-nvblox" class="md-nav__link">
-    <span class="md-ellipsis">
-      Isaac ROS Nvblox パッケージのインストール
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nvblox_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nvbloxの起動
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rviz2" class="md-nav__link">
-    <span class="md-ellipsis">
-      RVIz2で表示
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
       デモ
     </span>
   </a>
@@ -1418,108 +1328,8 @@
 
 
 <h1 id="nvblox">Nvblox</h1>
-<h2 id="_1">事前準備</h2>
-<p>プロジェクトをgit cloneします。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>cd ${ISAAC_ROS_WS}/src &amp;&amp; \
-   git clone -b release-3.2 https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common.git isaac_ros_common
-</code></pre></div></td></tr></table></div>
-<p>必要なパッケージをインストール。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install -y curl jq tar
-</code></pre></div></td></tr></table></div>
-<p>下記コマンドを実行。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code>NGC_ORG=&quot;nvidia&quot;
-NGC_TEAM=&quot;isaac&quot;
-PACKAGE_NAME=&quot;isaac_ros_nvblox&quot;
-NGC_RESOURCE=&quot;isaac_ros_nvblox_assets&quot;
-NGC_FILENAME=&quot;quickstart.tar.gz&quot;
-MAJOR_VERSION=3
-MINOR_VERSION=2
-VERSION_REQ_URL=&quot;https://catalog.ngc.nvidia.com/api/resources/versions?orgName=$NGC_ORG&amp;teamName=$NGC_TEAM&amp;name=$NGC_RESOURCE&amp;isPublic=true&amp;pageNumber=0&amp;pageSize=100&amp;sortOrder=CREATED_DATE_DESC&quot;
-AVAILABLE_VERSIONS=$(curl -s \
-    -H &quot;Accept: application/json&quot; &quot;$VERSION_REQ_URL&quot;)
-LATEST_VERSION_ID=$(echo $AVAILABLE_VERSIONS | jq -r &quot;
-    .recipeVersions[]
-    | .versionId as \$v
-    | \$v | select(test(\&quot;^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$\&quot;))
-    | split(\&quot;.\&quot;) | {major: .[0]|tonumber, minor: .[1]|tonumber, patch: .[2]|tonumber}
-    | select(.major == $MAJOR_VERSION and .minor &lt;= $MINOR_VERSION)
-    | \$v
-    &quot; | sort -V | tail -n 1
-)
-if [ -z &quot;$LATEST_VERSION_ID&quot; ]; then
-    echo &quot;No corresponding version found for Isaac ROS $MAJOR_VERSION.$MINOR_VERSION&quot;
-    echo &quot;Found versions:&quot;
-    echo $AVAILABLE_VERSIONS | jq -r &#39;.recipeVersions[].versionId&#39;
-else
-    mkdir -p ${ISAAC_ROS_WS}/isaac_ros_assets &amp;&amp; \
-    FILE_REQ_URL=&quot;https://api.ngc.nvidia.com/v2/resources/$NGC_ORG/$NGC_TEAM/$NGC_RESOURCE/\
-versions/$LATEST_VERSION_ID/files/$NGC_FILENAME&quot; &amp;&amp; \
-    curl -LO --request GET &quot;${FILE_REQ_URL}&quot; &amp;&amp; \
-    tar -xf ${NGC_FILENAME} -C ${ISAAC_ROS_WS}/isaac_ros_assets &amp;&amp; \
-    rm ${NGC_FILENAME}
-fi
-</code></pre></div></td></tr></table></div>
-<h2 id="isaac-ros-docker">Isaac ROS Dockerの起動</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>cd ${ISAAC_ROS_WS}/src/isaac_ros_common &amp;&amp; \
-./scripts/run_dev.sh
-</code></pre></div></td></tr></table></div>
-<h2 id="isaac-ros-nvblox">Isaac ROS Nvblox パッケージのインストール</h2>
-<p>起動したDocker内でros-humble-isaac-ros-visual-slamパッケージをインストール。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt update &amp;&amp;
-sudo apt-get install -y ros-humble-isaac-ros-nvblox &amp;&amp; \
-rosdep update &amp;&amp; \
-rosdep install isaac_ros_nvblox
-</code></pre></div></td></tr></table></div>
-<h2 id="nvblox_1">Nvbloxの起動</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>ros2 launch isaac_ros_examples isaac_ros_examples.launch.py launch_fragments:=argus_stereo,rectify_stereo,visual_slam \
-interface_specs_file:=${ISAAC_ROS_WS}/isaac_ros_assets/isaac_ros_visual_slam/quickstart_interface_specs.json \
-base_frame:=stereo_camera camera_optical_frames:=&quot;[&#39;stereo_camera_left_optical&#39;, &#39;stereo_camera_right_optical&#39;]&quot; module_id:=-1
-</code></pre></div></td></tr></table></div>
-<h2 id="rviz2">RVIz2で表示</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>cd ${ISAAC_ROS_WS}/src/isaac_ros_common &amp;&amp; \
-   ./scripts/run_dev.sh
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rviz2 -d $(ros2 pkg prefix isaac_ros_visual_slam --share)/rviz/default.cfg.rviz
-</code></pre></div></td></tr></table></div>
-<h2 id="_2">デモ</h2>
+<p>Isaac ROS 3.1で動作させたデモです。</p>
+<h2 id="_1">デモ</h2>
 <p><img alt="YOUTUBE" src="9UdM4q7JGC8" /></p>
 <h2 id="reference">Referenceページ</h2>
 <ul>
