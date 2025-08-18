@@ -1,0 +1,83 @@
+site_name: FaBo IsaacROS Docs
+theme:
+    name: material
+    custom_dir: 'theme'
+    language: 'ja'
+    palette:
+      primary: 'green'
+      accent: 'black'
+    logo: 'logo.png'
+    favicon: 'favicon.png'
+extra:
+    search:
+        language: 'jp'
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      noclasses: false
+      pygments_style: monokai
+      linenums: true
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.keys
+  - attr_list
+nav:
+  - Home: "index.md"
+  - Jetson Orin Nova:
+    - 基本情報: "jetson_nova/basic.md"
+    - nova_preflight_checker: "jetson_nova/test.md"
+    - SSD調整: "jetson_nova/ssd.md"
+    - Docker: "jetson_nova/docker.md"
+    - 環境設定: "jetson_nova/env.md"
+    - 対応カメラ: "jetson_nova/camera.md"
+    - Argus Camera: "jetson_nova/argus.md"
+    - ROS: "jetson_nova/ros.md"
+    - Apriltag: "jetson_nova/apriltag.md"
+    - Sensor: "jetson_nova/sensor.md"
+    - Perceptor: "jetson_nova/perceptor.md"
+    - VisualSlam: "jetson_nova/visual_slam.md"
+    - Nvblox(IsaacROS3.1): "jetson_nova/nvblox.md"
+    - ROSBAGへの保存: "jetson_nova/rosbag.md"
+    - 地図作成と自己位置推定: "jetson_nova/map.md"
+  - Jetson AGX Orin:
+    - SSDの設定: "jetson_agx/ssd.md"
+    - Dockerの設定: "jetson_agx/docker.md"
+    - 環境設定: "jetson_agx/env.md"
+    - 対応カメラ: "jetson_agx/camera.md"
+    - VPI: "jetson_agx/vpi.md"
+    - Realsenseの設定: "jetson_agx/realsense.md"
+    - Apriltag: "jetson_agx/apriltag.md"
+    - Nvblox(realsense): "jetson_agx/nvblox.md"
+  - Jetson Orin Nano:
+    - Dockerの設定: "jetson_nano/docker.md"
+    - 環境設定: "jetson_nano/env.md"
+    - 対応カメラ: "jetson_nano/camera.md"
+    - VPI: "jetson_nano/vpi.md"
+    - Realsenseの設定: "jetson_nano/realsense.md"
+    - ZEDの設定: "jetson_nano/zed.md"
+    - Apriltag: "jetson_nano/apriltag.md"
+    - Nvblox(realsense): "jetson_nano/nvblox.md"
+    - Nvblox(zed2): "jetson_nano/nvblox_zed2.md"
+  - Isaac SIM連携:
+    - AprilTag Detection: "isaac/apritag.md"
+    - DNN Object Detection: "isaac/dnn_detection.md"
+    - DNN Image Segmentation: "isaac/dnn_segmentation.md"
+    - DNN Stereo Depth Estimation: "isaac/dnn_depth.md"
+    - RT-DETR: "isaac/RT-DETR.md"
+    - Bi3D: "isaac/bi3d.md"
+    - SGM Stereo Disparity: "isaac/sgm_disparity.md"
+    - FoundationPose: "isaac/foundation_pose.md"
+    - Freespace Segmentation: "isaac/freespace.md"
+
+extra_css:
+#  - "https://fonts.googleapis.com/earlyaccess/notosansjp.css"
+#  - "https://fonts.googleapis.com/css?family=Open+Sans:600,800"
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+#  - "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css"
+  - "css/version-select.css"
+  - "css/custom.css"
+extra_javascript:
+  - javascripts/version-select.js
+  - javascripts/extra.js
+plugins:
+  - macros
