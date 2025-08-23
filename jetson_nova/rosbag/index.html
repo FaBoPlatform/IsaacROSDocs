@@ -569,6 +569,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rosbagbrowser" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROSBAG形式で録画開始(Browser)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rosbag_1" class="md-nav__link">
     <span class="md-ellipsis">
       ROSBAG形式で録画開始(コマンド)
@@ -1358,6 +1367,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rosbagbrowser" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROSBAG形式で録画開始(Browser)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rosbag_1" class="md-nav__link">
     <span class="md-ellipsis">
       ROSBAG形式で録画開始(コマンド)
@@ -1417,6 +1435,17 @@ source /opt/ros/humble/setup.bash
 <h2 id="_1">パッケージのインストール</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install -y ros-humble-isaac-ros-nova-recorder
 </code></pre></div></td></tr></table></div>
+<h2 id="rosbagbrowser">ROSBAG形式で録画開始(Browser)</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ros2 launch isaac_ros_nova_recorder nova_recorder.launch.py config:=nova-developer-kit
+</code></pre></div></td></tr></table></div>
+<p><code>https://IPアドレス:8080</code>にブラウザで接続し、foxglobeを表示</p>
+<p><img alt="" src="../img/rosbag001.jpg" /></p>
+<p>IPアドレスを指定してWebSocketで接続</p>
+<p><img alt="" src="../img/rosbag002.jpg" /></p>
+<p>WebSocket接続時にセキュリティエラーがでるので、解消</p>
+<p><img alt="" src="../img/rosbag003.jpg" /></p>
+<p><img alt="" src="../img/rosbag004.jpg" /></p>
+<p>/mnt/nova_ssd/recordings　に保存される</p>
 <h2 id="rosbag_1">ROSBAG形式で録画開始(コマンド)</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ros2 launch isaac_ros_nova_recorder nova_recorder.launch.py config:=nova-developer-kit headless:=True
 </code></pre></div></td></tr></table></div>
